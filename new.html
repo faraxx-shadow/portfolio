@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+<!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Bootstrap Icons CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<style>
+body { 
+  font-family: 'Montserrat', Arial, sans-serif; 
+  background-color: #ffffff;
+  color: #1a2530; /* Dark navy for readable body text */
+} 
+
+#about { 
+  background-color: #f0f4f8; /* Soft, light silver-blue */
+} 
+
+#skills { 
+  background-color: #e2e8f0; /* Crisp metallic silver */
+} 
+
+#portfolio { 
+  background-color: #f8fafc; /* Ultra-light silver sheen */
+} 
+
+#contact { 
+  background-color: #0f172a; /* Deep slate navy blue */
+  color: #f1f5f9; /* Bright silver-white text */
+} 
+
+.section-title { 
+  font-size: 2.5rem; 
+  font-weight: 700; 
+  margin-bottom: 2rem; 
+  color: #1e3a8a; /* Rich navy blue accents for headers */
+} 
+
+.section-content { 
+  font-size: 1.1rem; 
+  line-height: 1.6; 
+} 
+
+.portfolio-item img { 
+  width: 100%; 
+  height: auto; 
+  border-radius: 8px; 
+  box-shadow: 0 4px 6px rgba(30, 58, 138, 0.15); /* Subtly tinted navy shadow */
+} 
+
+.portfolio-item h5 { 
+  font-size: 1.2rem; 
+  font-weight: 600; 
+  margin-top: 1rem; 
+  color: #1e3a8a; /* Navy blue project titles */
+} 
+
+.navbar {
+  background-color: #1e3a8a; /* Solid navy navigation bar */
+}
+
+.navbar-brand { 
+  font-weight: 700; 
+  font-size: 1.5rem; 
+  color: #cbd5e1 !important; /* Polished silver brand text */
+} 
+
+.nav-link { 
+  font-size: 1.1rem; 
+  font-weight: 500; 
+  color: #f1f5f9 !important; /* Bright silver link text */
+} 
+
+.nav-link:hover {
+  color: #94a3b8 !important; /* Metallic silver hover effect */
+}
+
+footer { 
+  background: #0f172a; /* Matching deep navy footer */
+  color: #cbd5e1; /* Silver footer text */
+  padding: 20px 0; 
+  text-align: center; 
+  border-top: 2px solid #94a3b8; /* Distinguishing silver border */
+} 
+
+.d-none { 
+  display: none; 
+} 
+
+.d-block { 
+  display: block; 
+}
+
+.portfolio-item img { 
+  width: 100%; 
+  height: 250px; /* Forces all images to have the exact same height */
+  object-fit: cover; /* Crops the sides/top neatly instead of stretching the image */
+  border-radius: 8px; 
+  box-shadow: 0 4px 6px rgba(30, 58, 138, 0.15); 
+}
+
+#carouselExample .carousel-item img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1200 / 600;
+    object-fit: cover; /* Centers and trims non-conforming images without warping them */
+  }
+
+
+  /* Tiny Corner Rocket "Back to Top" Button Styles */
+#backToTopBtn {
+  position: fixed;
+  bottom: 15px;       /* Tightly nested in the bottom corner margin */
+  right: 15px;        /* Tightly nested in the right corner margin */
+  z-index: 1050;     
+  border: none;
+  outline: none;
+  background-color: #1e3a8a; /* Navy Blue color theme */
+  color: #f1f5f9;            /* Silver/White Icon color */
+  cursor: pointer;
+  width: 35px;        /* Small, unobtrusive footprint size */
+  height: 35px;      
+  border-radius: 8px; /* Balanced corner roundness */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;         /* Hidden initially until scroll event begins */
+  visibility: hidden;
+  overflow: hidden;  
+  transition: opacity 0.3s ease, visibility 0.3s ease, background-color 0.2s, transform 0.2s;
+}
+
+#backToTopBtn svg {
+  width: 18px;        /* Small icon graphic size */
+  height: 18px;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#backToTopBtn:hover {
+  background-color: #0f172a; /* Darkens to slate navy on hover */
+  color: #ffffff;
+  transform: translateY(-2px); 
+}
+
+#backToTopBtn.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Enhanced Corner Rocket "Back to Top" Button Styles */
+#backToTopBtn {
+  position: fixed;
+  bottom: 20px;       /* Moderately spaced from bottom margin */
+  right: 20px;        /* Moderately spaced from right margin */
+  z-index: 1050;     
+  border: none;
+  outline: none;
+  background-color: #1e3a8a; /* Navy Blue color theme */
+  color: #f1f5f9;            /* Silver/White Icon color */
+  cursor: pointer;
+  width: 48px;        /* Expanded layout size footprint */
+  height: 48px;      
+  border-radius: 12px; /* Proportional corner smoothing roundness */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;         /* Hidden initially until scrolling event begins */
+  visibility: hidden;
+  overflow: hidden;  
+  transition: opacity 0.3s ease, visibility 0.3s ease, background-color 0.2s, transform 0.2s;
+}
+
+#backToTopBtn svg {
+  width: 24px;        /* Enlarged clean icon footprint graphic scale */
+  height: 24px;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#backToTopBtn:hover {
+  background-color: #0f172a; /* Darkens to slate navy on hover state trackers */
+  color: #ffffff;
+  transform: translateY(-3px); /* Pronounced hover lift physics */
+}
+
+#backToTopBtn.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Rocket Animation Profiles Configured for the Larger Frame */
+#backToTopBtn.launching svg {
+  animation: rocketFlyUp 0.5s forwards;
+}
+
+@keyframes rocketFlyUp {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  45% {
+    transform: translateY(-55px);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(55px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="#">My Portfolio</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#skills">Skills</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#portfolio">Portfolio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#contactModal">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- About Section -->
+<section id="about" class="py-5 text-center">
+  <div class="container">
+    <h2 class="section-title">About Me</h2>
+    <h3 class="section-title"> I'm FARHAN HUSSINE.B</h3>
+    <p class="section-content">I am a passionate web developer with experience in creating beautiful and functional websites.</p>
+  </div>
+</section>
+
+<!-- Skills Section -->
+<section id="skills" class="py-5 text-center">
+  <div class="container">
+    <h2 class="section-title">My Skills</h2>
+    <div class="row">
+      <div class="col-md-4">
+        <i class="bi bi-code-slash" style="font-size: 48px;"></i>
+        <h4>Web Development</h4>
+        <p class="section-content">HTML, CSS, JavaScript, and more.</p>
+      </div>
+      <div class="col-md-4">
+        <i class="bi bi-palette" style="font-size: 48px;"></i>
+        <h4>UI/UX Design</h4>
+        <p class="section-content">Designing user-friendly interfaces.</p>
+      </div>
+      <div class="col-md-4">
+        <i class="bi bi-server" style="font-size: 48px;"></i>
+        <h4>Backend Development</h4>
+        <p class="section-content">Node.js, PHP, and databases.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- rocket  -->
+<!-- Enhanced Corner Rocket "Back to Top" Button -->
+<button id="backToTopBtn" title="Go to top">
+  <svg viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4M12,18C10.89,18 10,17.1 10,16C10,14.89 11.1,13 12,11C12.9,13 14,14.89 14,16C14,17.1 13.1,18 12,18M15.5,14C14.67,14 14,13.33 14,12.5C14,11.67 14.67,11 15.5,11C16.33,11 17,11.67 17,12.5C17,13.33 16.33,14 15.5,14M8.5,14C7.67,14 7,13.33 7,12.5C7,11.67 7.67,11 8.5,11C9.33,11 10,11.67 10,12.5C10,13.33 9.33,14 8.5,14Z"/>
+  </svg>
+</button>
+
+
+
+<!-- Portfolio Section -->
+<section id="portfolio" class="py-5 text-center">
+  <div class="container">
+    <h2 class="section-title">My Portfolio</h2>
+    <div class="row">
+      <div class="col-md-4 portfolio-item">
+        <img src="ai.png" alt="Portfolio 1">
+        <h5>Project 1 AI user</h5>
+      </div>
+      <div class="col-md-4 portfolio-item">
+        <img src="hack.png" alt="Portfolio 2">
+        <h5>Project 2  Ethical hacker</h5>
+      </div>
+      <div class="col-md-4 portfolio-item">
+        <img src="cyber.png" alt="Portfolio 3">
+        <h5>Project 3 Cyber Security</h5>
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- slides slides -->
+
+<div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+    <!-- Indicators -->
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="3" aria-label="Slide 4"></button>
+      <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="4" aria-label="Slide 5"></button>
+      <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="5" aria-label="Slide 6"></button>
+      <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="6" aria-label="Slide 7"></button>
+      <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="7" aria-label="Slide 8"></button>
+      <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="8" aria-label="Slide 9"></button>
+    </div>
+
+    <!-- Slides -->
+    <div class="carousel-inner">
+      <!-- Original Slides -->
+      <div class="carousel-item active">
+        <img src="a1.png" class="d-block w-100" alt="Banner 1">
+        <div class="carousel-caption d-none d-md-block">
+          <!-- <h5>First Slide</h5>
+          <p>This is the first slide description.</p> -->
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="a2.png" class="d-block w-100" alt="Banner 2">
+        <div class="carousel-caption d-none d-md-block">
+          <!-- <h5>Second Slide</h5>
+          <p>This is the second slide description.</p> -->
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="a3.png" class="d-block w-100" alt="Banner 3">
+        <div class="carousel-caption d-none d-md-block">
+          <!-- <h5>Third Slide</h5>
+          <p>This is the third slide description.</p> -->
+        </div>
+      </div>
+
+      <!-- 6 New Added Slides -->
+      <div class="carousel-item">
+        <img src="a4.png" class="d-block w-100" alt="Banner 4">
+        <div class="carousel-caption d-none d-md-block">
+          <!-- <h5>Fourth Slide</h5>
+          <p>This is the fourth slide description.</p> -->
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="a5.png" class="d-block w-100" alt="Banner 5">
+        <div class="carousel-caption d-none d-md-block">
+          <!-- <h5>Fifth Slide</h5>
+          <p>This is the fifth slide description.</p> -->
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="a6.png" class="d-block w-100" alt="Banner 6">
+        <div class="carousel-caption d-none d-md-block">
+          <!-- <h5>Sixth Slide</h5> -->
+          <!-- <p>This is the sixth slide description.</p> -->
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="a7.png" class="d-block w-100" alt="Banner 7">
+        <div class="carousel-caption d-none d-md-block">
+          <!-- <h5>Seventh Slide</h5>
+          <p>This is the seventh slide description.</p> -->
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="a8.png" class="d-block w-100" alt="Banner 8">
+        <div class="carousel-caption d-none d-md-block">
+          <!-- <h5>Eighth Slide</h5>
+          <p>This is the eighth slide description.</p> -->
+        </div>
+      </div>
+      <div class="carousel-item">
+        <img src="a9.png" class="d-block w-100" alt="Banner 9">
+        <div class="carousel-caption d-none d-md-block">
+          <!-- <h5>Ninth Slide</h5>
+          <p>This is the ninth slide description.</p> -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+
+<!-- Contact Modal -->
+<section id="cf" class="py-5 text-center">
+    <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#contactModal">CONTACT ME</button>
+</section>
+<div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="contactModalLabel">Contact Me</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <input type="text" class="form-control" placeholder="Your Name" required>
+          </div>
+          <div class="mb-3">
+            <input type="email" class="form-control" placeholder="Your Email" required>
+          </div>
+          <div class="mb-3">
+            <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">CONTACT ME</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="py-4">
+  <div class="container">
+    <p class="m-0">&copy; 2026 My Portfolio. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<!-- rocket script -->
+
+<script>
+  const backToTopBtn = document.getElementById("backToTopBtn");
+
+  // Show/Hide button depending on view window scrolling positions
+  window.onscroll = function() {
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+      backToTopBtn.classList.add("show");
+    } else {
+      backToTopBtn.classList.remove("show");
+    }
+  };
+
+  // Click handler executing launch transitions and viewport scrolling operations
+  backToTopBtn.addEventListener("click", function() {
+    backToTopBtn.classList.add("launching");
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+
+    // Reset the tracking animations once flight loops are complete
+    setTimeout(() => {
+      backToTopBtn.classList.remove("launching");
+    }, 500); 
+  });
+</script>
+
+
+</body>
+</html>
