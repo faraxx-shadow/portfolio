@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        /* Custom Professional Navy Blue Theme */
+
+:root {
+  --primary-navy: #0f172a;    /* Deep, dark navy for headers/nav */
+  --secondary-blue: #1e3a8a;  /* Royal navy for links and emphasis */
+  --accent-gold: #d97706;     /* Accent color for subtle highlights */
+  --bg-light: #f8fafc;        /* Soft off-white for the main background */
+  --text-dark: #334155;       /* Slate dark gray for readable body text */
+  --text-light: #ffffff;      /* Pure white for dark backgrounds */
+}
+
+/* Global Styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  line-height: 1.6;
+  padding-bottom: 60px;
+}
+
+/* Navbar Enhancements */
+.navbar.bg-dark {
+  background-color: var(--primary-navy) !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--text-light) !important;
+}
+
+.nav-link {
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: var(--accent-gold) !important;
+}
+
+/* Layout & Structure */
+h3, h4 {
+  color: var(--primary-navy);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 10px;
+}
+
+/* Scopes specific styling within layout blocks if wrapped in a container */
+p {
+  margin-bottom: 15px;
+  font-size: 1.05rem;
+}
+
+/* Formatting key terms to pop out naturally */
+p strong {
+  color: var(--secondary-blue);
+}
+
+/* Clean up paragraphs acting as list items */
+p:has(+ p) {
+  margin-bottom: 12px;
+}
+
+
+    </style>
+</head>
+<body>
+    <!-- nav bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="#">My Portfolio</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#intro">INTRODUCTION TO  HACKING</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#types">TYPES</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#tools">TOOLS</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link" href="#rules">RULES</a>
+        </li>  
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+    <!--intro  -->
+    <h4 id="intro">INTRODUCTION TO HACKING</h4>
+    <P>Ethical hacking, also known as penetration testing or white-hat hacking, is the practice of legally breaking into computers, networks, and applications to find security vulnerabilities before malicious hackers can exploit them. Instead of stealing data or causing damage, ethical hackers report their findings to the system owners and provide advice on how to patch the weaknesses.</P><br>
+    <p>Think of ethical hacking as a controlled rehearsal for a real-world cyberattack. Organizations hire these professionals to think like the enemy so they can build stronger digital defenses.</p><br>
+    
+    
+    <!-- rules -->
+    <h4 id="rules">GOLDEN RULES</h4>
+    <p>Unlike cybercriminals (black-hat hackers), ethical hackers must follow a strict legal and professional code:</p>
+    <p>Explicit Permission: They never test a system without written authorization from the owner.</p>
+    <p>Defined Scope: They stay within strict boundaries, only testing the specific systems they were hired to check.</p>
+    <p>Disclose Findings: Every vulnerability discovered must be reported transparently to management.</p>
+    <p>Data Respect: They respect data privacy and avoid disrupting normal business operations.</p>
+
+
+    <!-- types of testing -->
+    <h3 id="types">COMMON TYPES OF TESTING</h3>
+    <P>Ethical hacking covers several different areas of technology:</P>
+    <P>Web Application Hacking: Testing websites and cloud apps for flaws like SQL injection or cross-site scripting (XSS).</P>
+    <P>Network Hacking: Assessing wireless routers, firewalls, and data packets to block unauthorized network intrusions.</P>
+    <P>System Hacking: Targeting operating systems (like Windows or Linux) to gain admin-level privileges.</P>
+    <P>Social Engineering: Testing human vulnerabilities by attempting to trick employees into giving away passwords via phishing emails or phone calls.</P>
+
+
+    <!-- TOOLS -->
+    <h3 id="tools">KEY TOOLS</h3>
+    <P>Professionals utilize a mix of open-source and proprietary software</P>
+    <p>Kali Linux: A dedicated operating system pre-loaded with hundreds of security auditing tools.</p>
+    <p>Wireshark: A tool used to capture and analyze live network traffic.</p>
+    <p>Nmap: Short for Network Mapper, used for discovering devices and scanning ports.</p>
+    <p>Burp Suite: A popular platform widely used for testing web application security.</p>
+
+
+
+
+</body>
+</html>
