@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dare Challenge</title>
+    <style>
+      :root {
+        --bg-1: #fdf2f8;
+        --bg-2: #eef6ff;
+        --card: rgba(255, 255, 255, 0.9);
+        --primary: #7c3aed;
+        --primary-dark: #5b21b6;
+        --secondary: #ec4899;
+        --text: #1f2937;
+        --muted: #6b7280;
+        --success: #10b981;
+        --shadow: 0 18px 45px rgba(124, 58, 237, 0.18);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(135deg, var(--bg-1), var(--bg-2));
+        color: var(--text);
+      }
+
+      .container {
+        width: min(92vw, 520px);
+      }
+
+      .card {
+        background: var(--card);
+        border-radius: 24px;
+        box-shadow: var(--shadow);
+        padding: 32px 24px;
+        text-align: center;
+        min-height: 360px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        inset: -60px auto auto -60px;
+        width: 180px;
+        height: 180px;
+        background: rgba(236, 72, 153, 0.08);
+        border-radius: 50%;
+      }
+
+      .page {
+        display: none;
+        width: 100%;
+        position: relative;
+        z-index: 1;
+      }
+
+      .page.active {
+        display: block;
+      }
+
+      h1, h2, p {
+        margin: 0;
+      }
+
+      .greeting-title {
+        font-size: clamp(2rem, 5vw, 3rem);
+        margin-bottom: 18px;
+      }
+
+      .prompt-title {
+        font-size: clamp(1.8rem, 4vw, 2.4rem);
+        margin-bottom: 12px;
+      }
+
+      .subtitle {
+        color: var(--muted);
+        font-size: 1rem;
+        margin-bottom: 28px;
+      }
+
+      .name-input {
+        width: 100%;
+        max-width: 250px;
+        padding: 12px 14px;
+        margin: 0 auto 20px;
+        border-radius: 12px;
+        border: 2px solid rgba(124, 58, 237, 0.2);
+        font-size: 1rem;
+        outline: none;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        display: block;
+      }
+
+      .name-input:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.1);
+      }
+
+      .button-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 18px;
+        margin-top: 22px;
+        flex-wrap: wrap;
+      }
+
+      button {
+        border: none;
+        border-radius: 999px;
+        font-size: 1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform 0.25s ease, opacity 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+      }
+
+      .primary-btn {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        padding: 14px 30px;
+        box-shadow: 0 12px 24px rgba(124, 58, 237, 0.25);
+      }
+
+      .secondary-btn {
+        background: #f3f4f6;
+        color: var(--text);
+        padding: 14px 30px;
+      }
+
+      .primary-btn:hover, .secondary-btn:hover {
+        transform: translateY(-2px);
+      }
+
+      .yes-btn {
+        transform-origin: center;
+      }
+
+      .no-btn {
+        transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+      }
+
+      .hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: scale(0.2);
+      }
+
+      .confirmation-text {
+        font-size: clamp(1.7rem, 4vw, 2.3rem);
+        font-weight: 800;
+        color: var(--primary-dark);
+        line-height: 1.4;
+      }
+
+      @media (max-width: 420px) {
+        .card {
+          padding: 26px 18px;
+          min-height: 320px;
+        }
+
+        .button-row {
+          gap: 12px;
+        }
+
+        .primary-btn, .secondary-btn {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <!-- Page 1: Greeting -->
+        <section class="page active" id="page-1">
+          <h1 class="greeting-title">Hi <span id="friend-name">ELAKIYA</span>!</h1>
+          <p class="subtitle">A little surprise is waiting for you.</p>
+          <button class="primary-btn" id="next-page-1">Next</button>
+        </section>
+
+        <!-- Page 2: Dare prompt -->
+        <section class="page" id="page-2">
+          <h2 class="prompt-title">Do you accept the dare?</h2>
+          <div class="button-row">
+            <button class="primary-btn yes-btn" id="yes-btn">Yes</button>
+            <button class="secondary-btn no-btn" id="no-btn">No</button>
+          </div>
+        </section>
+
+        <!-- Page 3: Confirmation -->
+        <section class="page" id="page-3">
+          <p class="confirmation-text">Ur dare accept message was sent to Farhan</p>
+        </section>
+      </div>
+    </div>
+
+    <script>
+      // Simple state management for the three-page flow
+      const pages = document.querySelectorAll('.page');
+      const nameSpan = document.getElementById('friend-name');
+      const nameInput = document.createElement('input');
+      const nextButton = document.getElementById('next-page-1');
+      const yesBtn = document.getElementById('yes-btn');
+      const noBtn = document.getElementById('no-btn');
+
+      // Add a small input field to the greeting page for personalization
+      nameInput.type = 'text';
+      nameInput.placeholder = 'Enter your friend\'s name';
+      nameInput.className = 'name-input';
+      nameInput.value = 'ELAKIYA';
+      document.getElementById('page-1').insertBefore(nameInput, nextButton);
+
+      let noClicks = 0;
+      let yesScale = 1;
+
+      function showPage(pageId) {
+        pages.forEach((page) => {
+          page.classList.toggle('active', page.id === pageId);
+        });
+      }
+
+      function updateFriendName() {
+        const value = nameInput.value.trim();
+        nameSpan.textContent = value || 'ELAKIYA';
+      }
+
+      nextButton.addEventListener('click', () => {
+        updateFriendName();
+        showPage('page-2');
+      });
+
+      yesBtn.addEventListener('click', () => {
+        showPage('page-3');
+      });
+
+      noBtn.addEventListener('click', () => {
+        noClicks += 1;
+        yesScale += 0.18;
+
+        // The Yes button grows each time the user clicks No
+        yesBtn.style.transform = `scale(${yesScale})`;
+
+        // After about 6-7 clicks, hide the No button
+        if (noClicks >= 6) {
+          noBtn.classList.add('hidden');
+          return;
+        }
+
+        // Make the No button look playful and slightly move away
+        const offsetX = (Math.random() * 18 - 9).toFixed(2);
+        const offsetY = (Math.random() * 18 - 9).toFixed(2);
+        noBtn.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+      });
+
+      nameInput.addEventListener('input', updateFriendName);
+    </script>
+  </body>
+</html>
